@@ -73,7 +73,7 @@ build:
 	( \
 	  cd $(SOURCE); \
 	  ./configure --prefix=$(PKGROOT) --with-gmp=/opt/gcc/gmp\
-             --with-mpfr=/opt/gcc/mpfr \
+             --with-mpfr=/opt/gcc/mpfr; \
           make; \
           make install \
 	)
