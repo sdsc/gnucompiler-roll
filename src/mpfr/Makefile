@@ -54,7 +54,7 @@
 #
 # @Copyright@
 
-PKGROOT = /opt/gnu/mpfr/$(VERSION)
+PKGROOT = /opt/gnu/mpfr
 SOURCE = mpfr-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
@@ -66,15 +66,16 @@ build:
 	mkdir -p /opt/gnu/gmp/4.3.2
 	tar zxvf $(SOURCE).tar.gz
 	mount --bind $(REDHAT.ROOT)/src/build-mpfr  $(PKGROOT)
-	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gnu/gmp/4.3.2
+	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gnu/gmp
 	( \
 	  cd $(SOURCE); \
-	  ./configure --prefix=$(PKGROOT) --with-gmp=/opt/gnu/gmp/4.3.2; \
+	  ./configure --prefix=$(PKGROOT) --with-gmp=/opt/gnu/gmp; \
           make; \
           make install \
 	)
 	umount $(PKGROOT)
-	umount /opt/gnu/gmp/4.3.2
+	umount /opt/gnu/gmp
+	rm -rf /opt/gnu/gmp
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
