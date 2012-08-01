@@ -1,0 +1,50 @@
+#!/bin/bash
+/bin/mkdir -m 0755 -p ROOT_PKGROOTMODULEROOT
+
+cat > ROOT_PKGROOTMODULEROOT/VERSION <<END
+#%Module1.0
+module-whatis "GNU compilers"
+module-whatis "Version: VERSION" 
+module-whatis "Description: GNU compilers"
+
+# If unloading, also unload any gnu-dependent modules
+if {[module-info mode switch1] || [module-info mode switch3]} {
+  # Get the command line that invoked this process; unload only if switching
+  # from gnu to another (compiler) module, e.g., "module switch gnu intel"
+  set commandWords [split [exec /bin/ps -p [pid] -o args=] " "]
+  set switchFrom [lindex [split [module-info name] "/"] 0]
+  set switchTo [lindex [split [lindex \$commandWords end] "/"] 0]
+  set unloadApps [expr ! [string equal \$switchTo \$switchFrom]]
+} elseif {[module-info mode remove]} {
+  set unloadApps 1
+} else {
+  set unloadApps 0
+}
+if {\$unloadApps && [info exists env(LOADEDMODULES)]} {
+  foreach app [split \$env(LOADEDMODULES) ":"] {
+    # Check whether any gnu-dependent module dir contains a module w/this name
+    if {[llength [glob -nocomplain /opt/modulefiles/*/.gnu/\$app]] > 0} {
+      puts stderr "Unloading compiler-dependent module \$app"
+      module unload [lindex [split \$app "/"] 0]
+    }
+  }
+}
+
+# Add all gnu-dependent module dirs to the search path
+foreach path [glob -nocomplain /opt/modulefiles/*/.gnu] {
+  prepend-path MODULEPATH \$path
+}
+`cat MODULEBUILD/*.mod`
+
+# Compiler environment modifications: none needed
+
+END
+
+chmod 0644  ROOT_PKGROOTMODULEROOT/VERSION
+
+cat > ROOT_PKGROOTMODULEROOT/.version.VERSION <<END
+#%Module1.0
+set ModulesVersion "VERSION"
+END
+
+(cd ROOT_PKGROOTMODULEROOT; /bin/ln -s .version.VERSION .version )
