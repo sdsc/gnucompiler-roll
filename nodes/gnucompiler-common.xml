@@ -18,7 +18,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>opt-gmp</package>
 <package>opt-mpfr</package>
 <package>opt-mpc</package>
-<package>opt-gnucompiler</package>
+<package>opt-gnucompiler-modules</package>
 
 <post>
 
