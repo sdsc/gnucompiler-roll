@@ -65,9 +65,9 @@ build:
 install::
 	mkdir -p $(ROOT)
 	( \
-           cat gnu.module| perl -pi -e "s!ROOT_PKGROOT!$(ROOT)!g;s!MODULEROOT!/opt/modulefiles/compilers/gnu!;s!MODULEBUILD!$(REDHAT.ROOT)/src/build-gnucompiler-modules!g!VERSION!$(VERSION)!g" > gnu.module.tmp; \
-           bash gnu.module.tmp; \
-           rm -f gnu.module.tmp; \
+           cat gcc.module| perl -pi -e "s!ROOT_PKGROOT!$(ROOT)!g;s!MODULEROOT!/opt/modulefiles/compilers/gnu!;s!MODULEBUILD!$(REDHAT.ROOT)/src/build-gnucompiler-modules!g!VERSION!$(VERSION)!g" > gcc.module.tmp; \
+           bash gcc.module.tmp; \
+           rm -f gcc.module.tmp; \
            rm -f *.mod \
         )
 
