@@ -54,7 +54,7 @@
 #
 # @Copyright@
 
-PKGROOT = /opt/gnu/mpc
+PKGROOT = /opt/gcc/mpc
 SOURCE = mpc-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
@@ -63,26 +63,26 @@ REDHAT.ROOT = $(PWD)/../../
 build:
 	mkdir -p $(REDHAT.ROOT)/src/build-mpc
 	mkdir -p $(PKGROOT)
-	mkdir -p /opt/gnu/mpfr
-	mkdir -p /opt/gnu/gmp
-	mkdir -p /opt/gnu/mpc
+	mkdir -p /opt/gcc/mpfr
+	mkdir -p /opt/gcc/gmp
+	mkdir -p /opt/gcc/mpc
 	tar zxvf $(SOURCE).tar.gz
 	mount --bind $(REDHAT.ROOT)/src/build-mpc  $(PKGROOT)
-	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gnu/gmp
-	mount --bind $(REDHAT.ROOT)/src/build-mpfr  /opt/gnu/mpfr
+	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gcc/gmp
+	mount --bind $(REDHAT.ROOT)/src/build-mpfr  /opt/gcc/mpfr
 	( \
 	  cd $(SOURCE); \
-	  ./configure --prefix=$(PKGROOT) --with-gmp=/opt/gnu/gmp\
-             --with-mpfr=/opt/gnu/mpfr \
+	  ./configure --prefix=$(PKGROOT) --with-gmp=/opt/gcc/gmp\
+             --with-mpfr=/opt/gcc/mpfr \
           make; \
           make install \
 	)
 	umount $(PKGROOT)
-	umount /opt/gnu/gmp
-	umount /opt/gnu/mpfr
-	rm -rf /opt/gnu/mpfr
-	rm -rf /opt/gnu/gmp
-	rm -rf /opt/gnu/mpc
+	umount /opt/gcc/gmp
+	umount /opt/gcc/mpfr
+	rm -rf /opt/gcc/mpfr
+	rm -rf /opt/gcc/gmp
+	rm -rf $(PKGROOT)
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
