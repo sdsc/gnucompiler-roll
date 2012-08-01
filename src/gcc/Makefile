@@ -54,7 +54,7 @@
 #
 # @Copyright@
 
-PKGROOT = /opt/gcc
+PKGROOT = /opt/gcc/gcc
 SOURCE = gcc-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
@@ -86,6 +86,7 @@ build:
 	rm -rf  /opt/gcc/mpc
 	rm -rf  /opt/gcc/gmp
 	rm -rf  /opt/gcc/mpfr
+	rm -rf  $(PKGROOT)
 
 install::
 	mkdir -p -m 755 $(PKGROOT)
