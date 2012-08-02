@@ -91,6 +91,9 @@ build:
 install::
 	mkdir -p -m 755 $(PKGROOT)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	mkdir -p -m 755 /opt/gcc/mpc
+	mkdir -p -m 755 /opt/gcc/gmp
+	mkdir -p -m 755 /opt/gcc/mpfr
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	mount --bind $(REDHAT.ROOT)/src/build-mpc  /opt/gcc/mpc
 	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gcc/gmp
