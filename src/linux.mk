@@ -62,5 +62,6 @@ SRCDIRS = `find . -maxdepth 1 -type d \
         -not -name mpfr \
         -not -name gmp \
         -not -name gnucompiler-modules \
+        -not -name build-\* \
         -not -name .` gmp mpfr mpc gcc gnucompiler-modules
 
