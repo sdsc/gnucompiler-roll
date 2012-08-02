@@ -34,7 +34,6 @@ if {\$unloadApps && [info exists env(LOADEDMODULES)]} {
 foreach path [glob -nocomplain /opt/modulefiles/*/.gnu] {
   prepend-path MODULEPATH \$path
 }
-`cat MODULEBUILD/*.mod`
 
 # Compiler environment modifications: none needed
 
