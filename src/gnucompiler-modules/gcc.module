@@ -35,8 +35,10 @@ foreach path [glob -nocomplain /opt/modulefiles/*/.gnu] {
   prepend-path MODULEPATH \$path
 }
 
-# Compiler environment modifications: none needed
-
+# Compiler environment modifications
+set gccHome /opt/gcc/gcc
+prepend-path PATH \$gccHome/bin
+prepend-path LD_LIBRARY_PATH \$gccHome/lib
 END
 
 chmod 0644  ROOT_PKGROOTMODULEROOT/VERSION
