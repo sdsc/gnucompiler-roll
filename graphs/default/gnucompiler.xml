@@ -3,8 +3,10 @@
 <graph>
 
 <description>
-GNU compiler
-http://gcc.gnu.org
+GNU compiler - http://gcc.gnu.org
+GNU GMP arbitrary precision library - http://gmplib.org
+GNU MPC complex number library - http://www.multiprecision.org
+GNU MPFR multiple precision library - http://www.mpfr.org
 </description>
 
 <copyright>
