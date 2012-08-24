@@ -1,3 +1,3 @@
 NAME    = opt-gmp
-VERSION = 4.3.2
+VERSION = 5.0.5
 RELEASE = 0

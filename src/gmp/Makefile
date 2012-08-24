@@ -63,7 +63,7 @@ REDHAT.ROOT = $(PWD)/../../
 build:
 	mkdir -p -m 755 $(PKGROOT)
 	mkdir -p -m 755 $(REDHAT.ROOT)/src/build-gmp
-	tar zxvf $(SOURCE).tar.gz
+	tar jxvf $(SOURCE).tar.bz2
 	mount --bind $(REDHAT.ROOT)/src/build-gmp  $(PKGROOT)
 	( \
 	  cd $(SOURCE); \
