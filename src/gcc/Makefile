@@ -54,7 +54,7 @@
 #
 # @Copyright@
 
-PKGROOT = /opt/gcc/gcc
+PKGROOT = /opt/gnu/gcc
 SOURCE = gcc-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
@@ -63,53 +63,53 @@ REDHAT.ROOT = $(PWD)/../../
 build:
 	mkdir -p -m 755 $(PKGROOT)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
-	mkdir -p -m 755 /opt/gcc/mpc
-	mkdir -p -m 755 /opt/gcc/gmp
-	mkdir -p -m 755 /opt/gcc/mpfr
+	mkdir -p -m 755 /opt/gnu/mpc
+	mkdir -p -m 755 /opt/gnu/gmp
+	mkdir -p -m 755 /opt/gnu/mpfr
 	tar zxvf $(SOURCE).tar.gz
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
-	mount --bind $(REDHAT.ROOT)/src/build-mpc  /opt/gcc/mpc
-	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gcc/gmp
-	mount --bind $(REDHAT.ROOT)/src/build-mpfr  /opt/gcc/mpfr
+	mount --bind $(REDHAT.ROOT)/src/build-mpc  /opt/gnu/mpc
+	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gnu/gmp
+	mount --bind $(REDHAT.ROOT)/src/build-mpfr  /opt/gnu/mpfr
 	( \
 	  cd $(SOURCE); \
-          export LD_LIBRARY_PATH=/opt/gcc/gmp/lib:/opt/gcc/mpfr/lib:/opt/gcc/mpc/lib:$${LD_LIBRARY_PATH}; \
-	  ./configure --prefix=$(PKGROOT) --with-gmp=/opt/gcc/gmp \
-             --with-mpfr=/opt/gcc/mpfr \
-             --with-mpc=/opt/gcc/mpc; \
+          export LD_LIBRARY_PATH=/opt/gnu/gmp/lib:/opt/gnu/mpfr/lib:/opt/gnu/mpc/lib:$${LD_LIBRARY_PATH}; \
+	  ./configure --prefix=$(PKGROOT) --with-gmp=/opt/gnu/gmp \
+             --with-mpfr=/opt/gnu/mpfr \
+             --with-mpc=/opt/gnu/mpc; \
           make \
 	)
 	umount $(PKGROOT)
-	umount /opt/gcc/mpc
-	umount /opt/gcc/gmp
-	umount /opt/gcc/mpfr
-	rm -rf  /opt/gcc/mpc
-	rm -rf  /opt/gcc/gmp
-	rm -rf  /opt/gcc/mpfr
+	umount /opt/gnu/mpc
+	umount /opt/gnu/gmp
+	umount /opt/gnu/mpfr
+	rm -rf  /opt/gnu/mpc
+	rm -rf  /opt/gnu/gmp
+	rm -rf  /opt/gnu/mpfr
 	rm -rf  $(PKGROOT)
 
 install::
 	mkdir -p -m 755 $(PKGROOT)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
-	mkdir -p -m 755 /opt/gcc/mpc
-	mkdir -p -m 755 /opt/gcc/gmp
-	mkdir -p -m 755 /opt/gcc/mpfr
+	mkdir -p -m 755 /opt/gnu/mpc
+	mkdir -p -m 755 /opt/gnu/gmp
+	mkdir -p -m 755 /opt/gnu/mpfr
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
-	mount --bind $(REDHAT.ROOT)/src/build-mpc  /opt/gcc/mpc
-	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gcc/gmp
-	mount --bind $(REDHAT.ROOT)/src/build-mpfr  /opt/gcc/mpfr
+	mount --bind $(REDHAT.ROOT)/src/build-mpc  /opt/gnu/mpc
+	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gnu/gmp
+	mount --bind $(REDHAT.ROOT)/src/build-mpfr  /opt/gnu/mpfr
 	( \
             cd $(SOURCE); \
-            export LD_LIBRARY_PATH=/opt/gcc/gmp/lib:/opt/gcc/mpfr/lib:/opt/gcc/mpc/lib:$${LD_LIBRARY_PATH}; \
+            export LD_LIBRARY_PATH=/opt/gnu/gmp/lib:/opt/gnu/mpfr/lib:/opt/gnu/mpc/lib:$${LD_LIBRARY_PATH}; \
             make install; \
         )
 	umount $(PKGROOT)
-	umount /opt/gcc/mpc
-	umount /opt/gcc/gmp
-	umount /opt/gcc/mpfr
-	rm -rf  /opt/gcc/mpc
-	rm -rf /opt/gcc/gmp
-	rm -rf /opt/gcc/mpfr
+	umount /opt/gnu/mpc
+	umount /opt/gnu/gmp
+	umount /opt/gnu/mpfr
+	rm -rf  /opt/gnu/mpc
+	rm -rf /opt/gnu/gmp
+	rm -rf /opt/gnu/mpfr
 	rm -rf $(PKGROOT)
 
 clean::

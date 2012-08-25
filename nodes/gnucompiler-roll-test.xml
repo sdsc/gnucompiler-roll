@@ -33,7 +33,7 @@ my $VERSION = '4.6.1';
 my $appliance = $#ARGV >= 0 ? $ARGV[0] :
                 -d '/export/rocks/install' ? 'Frontend' : 'Compute';
 my $installedOnAppliancesPattern = '.';
-my $isInstalled = -d '/opt/gcc';
+my $isInstalled = -d '/opt/gnu';
 my $output;
 
 my $TESTFILE = 'tmpgnu';
