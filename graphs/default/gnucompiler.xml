@@ -19,9 +19,13 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 
 <edge from="base">
   <to>gnucompiler-common</to>
+  <to>gnucompiler-roll-test</to>
 </edge>
 <order head="base">
   <tail>gnucompiler-common</tail>
+</order>
+<order head="base">
+  <tail>gnucompiler-roll-test</tail>
 </order>
 
 </graph>
