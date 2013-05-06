@@ -1,25 +1,4 @@
-<?xml version="1.0" standalone="no"?>
-
-<kickstart>
-
-<description>
-GNU compiler roll installation test.
-</description>
-
-<copyright>
-Copyright (c) 2000 - 2011 The Regents of the University of California.
-All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
-</copyright>
-
-<changelog>
-</changelog>
-
-<post>
-
-/bin/mkdir -p -m 0755 /root/rolltests
-
-<file name="/root/rolltests/gnucompiler.t" perms="0755">
-<![CDATA[#!/usr/bin/perl -w
+#!/usr/bin/perl -w
 # gnucompiler roll installation test.  Usage:
 # gnucompiler.t [nodetype]
 #   where nodetype is one of "Compute", "Dbnode", "Frontend" or "Login"
@@ -90,11 +69,4 @@ SKIP: {
 
 }
 
-
-`rm -f $TESTFILE*`;
-]]>
-</file>
-
-</post>
-
-</kickstart> 
+`rm -fr $TESTFILE*`;
