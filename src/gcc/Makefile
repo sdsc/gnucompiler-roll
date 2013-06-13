@@ -67,6 +67,7 @@ build:
 	mkdir -p -m 755 /opt/gnu/gmp
 	mkdir -p -m 755 /opt/gnu/mpfr
 	tar zxvf $(SOURCE).tar.gz
+	yum install glibc-devel.i686
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	mount --bind $(REDHAT.ROOT)/src/build-mpc  /opt/gnu/mpc
 	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gnu/gmp
