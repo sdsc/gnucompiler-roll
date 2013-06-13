@@ -77,6 +77,7 @@ build:
 	  ./configure --prefix=$(PKGROOT) --with-gmp=/opt/gnu/gmp \
              --with-mpfr=/opt/gnu/mpfr \
              --with-mpc=/opt/gnu/mpc; \
+             --disable-multilib; \
           make \
 	)
 	umount $(PKGROOT)
