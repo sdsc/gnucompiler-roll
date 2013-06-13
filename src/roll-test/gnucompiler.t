@@ -7,7 +7,7 @@
 use Test::More qw(no_plan);
 
 # TODO figure programmatically
-my $VERSION = '4.6.1';
+my $VERSION = '4.8.1';
 
 my $appliance = $#ARGV >= 0 ? $ARGV[0] :
                 -d '/export/rocks/install' ? 'Frontend' : 'Compute';
