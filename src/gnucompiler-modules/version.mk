@@ -1,3 +1,3 @@
 NAME    	= gnucompiler-modules
-VERSION 	= 4.6.1
+VERSION 	= 4.8.1
 RELEASE 	= 0
