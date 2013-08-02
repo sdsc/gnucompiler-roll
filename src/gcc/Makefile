@@ -79,7 +79,7 @@ build:
              --with-mpfr=/opt/gnu/mpfr \
              --with-mpc=/opt/gnu/mpc; \
              --disable-multilib; \
-          make \
+          make -j 16 \
 	)
 	umount $(PKGROOT)
 	umount /opt/gnu/mpc
@@ -103,7 +103,7 @@ install::
 	( \
             cd $(SOURCE); \
             export LD_LIBRARY_PATH=/opt/gnu/gmp/lib:/opt/gnu/mpfr/lib:/opt/gnu/mpc/lib:$${LD_LIBRARY_PATH}; \
-            make install; \
+            make -j 16 install; \
         )
 	umount $(PKGROOT)
 	umount /opt/gnu/mpc
