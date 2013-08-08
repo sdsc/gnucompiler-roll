@@ -68,10 +68,13 @@ build:
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
 	  cd $(SOURCE); \
-          export LD_LIBRARY_PATH=$(REDHAT.ROOT)/src/build-gmp:$(REDHAT.ROOT)/src/build-mpfr:$(REDHAT.ROOT)/src/build-mpc:$${LD_LIBRARY_PATH}; \
-	  ./configure --prefix=$(PKGROOT) --with-gmp=$(REDHAT.ROOT)/src/build-gmp \
-             --with-mpfr=$(REDHAT.ROOT)/src/build-mpfr \
-             --with-mpc=$(REDHAT.ROOT)/src/build-mpc; \
+          cp -r $(REDHAT.ROOT)/src/build-gmp/* $(PKGROOT); \
+          cp -r $(REDHAT.ROOT)/src/build-mpfr/* $(PKGROOT); \
+          cp -r $(REDHAT.ROOT)/src/build-mpcc/* $(PKGROOT); \
+          export LD_LIBRARY_PATH=$(PKGROOT)/lib:$(PKGROOT)/lib64; \
+	  ./configure --prefix=$(PKGROOT) --with-gmp=$(PKGROOT) \
+             --with-mpfr=$(PKGROOT) \
+             --with-mpc=$(PKGROOT); \
              --disable-multilib; \
           make -j 16 \
 	)
@@ -79,12 +82,10 @@ build:
 	rm -rf  $(PKGROOT)
 
 install::
-	mkdir -p -m 755 $(PKGROOT)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
             cd $(SOURCE); \
-            export LD_LIBRARY_PATH=$(REDHAT.ROOT)/src/build-gmp:$(REDHAT.ROOT)/src/build-mpfr:$(REDHAT.ROOT)/src/build-mpc:$${LD_LIBRARY_PATH}; \
             make -j 16 install; \
         )
 	umount $(PKGROOT)
