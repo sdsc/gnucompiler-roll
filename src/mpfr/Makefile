@@ -66,7 +66,6 @@ build:
 	mkdir -p /opt/gnu/gmp
 	tar zxvf $(SOURCE).tar.gz
 	mount --bind $(REDHAT.ROOT)/src/build-mpfr  $(PKGROOT)
-	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gnu/gmp
 	( \
 	  cd $(SOURCE); \
 	  ./configure --prefix=$(PKGROOT) --with-gmp=/opt/gnu/gmp; \
@@ -74,8 +73,6 @@ build:
           make install \
 	)
 	umount $(PKGROOT)
-	umount /opt/gnu/gmp
-	rm -rf /opt/gnu/gmp
 	rm -rf $(PKGROOT)
 
 install::
