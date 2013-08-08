@@ -66,8 +66,9 @@ build:
 	tar zxvf $(SOURCE).tar.gz
 	mount --bind $(REDHAT.ROOT)/src/build-mpfr  $(PKGROOT)
 	( \
+          cp -r $(REDHAT.ROOT)/src/build-gmp/* $(PKGROOT); \
 	  cd $(SOURCE); \
-	  ./configure --prefix=$(PKGROOT) --with-gmp=$(REDHAT.ROOT)/src/build-gmp; \
+	  ./configure --prefix=$(PKGROOT) --with-gmp=$(PKGROOT); \
           make; \
           make install \
 	)

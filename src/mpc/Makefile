@@ -67,8 +67,10 @@ build:
 	mount --bind $(REDHAT.ROOT)/src/build-mpc  $(PKGROOT)
 	( \
 	  cd $(SOURCE); \
-	  ./configure --prefix=$(PKGROOT) --with-gmp=$(REDHAT.ROOT)/src/build-gmp \
-             --with-mpfr=$(REDHAT.ROOT)/src/build-mpfr; \
+          cp -r $(REDHAT.ROOT)/src/build-gmp/* $(PKGROOT); \
+          cp -r $(REDHAT.ROOT)/src/build-mpfr/* $(PKGROOT); \
+	  ./configure --prefix=$(PKGROOT) --with-gmp=$(PKGROOT) \
+             --with-mpfr=$(PKGROOT); \
           make; \
           make install \
 	)
