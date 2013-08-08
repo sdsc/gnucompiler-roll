@@ -70,7 +70,7 @@ build:
 	  cd $(SOURCE); \
           cp -r $(REDHAT.ROOT)/src/build-gmp/* $(PKGROOT); \
           cp -r $(REDHAT.ROOT)/src/build-mpfr/* $(PKGROOT); \
-          cp -r $(REDHAT.ROOT)/src/build-mpcc/* $(PKGROOT); \
+          cp -r $(REDHAT.ROOT)/src/build-mpc/* $(PKGROOT); \
           export LD_LIBRARY_PATH=$(PKGROOT)/lib:$(PKGROOT)/lib64; \
 	  ./configure --prefix=$(PKGROOT) --with-gmp=$(PKGROOT) \
              --with-mpfr=$(PKGROOT) \
