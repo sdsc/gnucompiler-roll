@@ -54,7 +54,7 @@
 #
 # @Copyright@
 
-PKGROOT = /opt/gnu/gcc
+PKGROOT = /opt/gnu
 SOURCE = gcc-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
