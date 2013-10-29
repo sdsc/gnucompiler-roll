@@ -55,12 +55,13 @@
 # @Copyright@
 
 PKGROOT = /opt/gnu/mpfr
-SOURCE = mpfr-$(VERSION)
+SOURCE = $(MPFR_NAME)-$(MPFR_VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
+include pull.mk
 
-build:
+build: $(SRC_DIRS)
 	mkdir -p $(REDHAT.ROOT)/src/build-mpfr 
 	mkdir -p $(PKGROOT)
 	mkdir -p /opt/gnu/gmp
