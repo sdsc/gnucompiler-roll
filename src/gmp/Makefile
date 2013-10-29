@@ -55,12 +55,13 @@
 # @Copyright@
 
 PKGROOT = /opt/gnu/gmp
-SOURCE = gmp-$(VERSION)
+SOURCE = $(GMP_NAME)-$(GMP_VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
+include pull.mk
 
-build:
+build: $(SRC_DIRS)
 	mkdir -p -m 755 $(PKGROOT)
 	mkdir -p -m 755 $(REDHAT.ROOT)/src/build-gmp
 	tar xvf $(SOURCE).tar.gz
