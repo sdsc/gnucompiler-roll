@@ -55,12 +55,13 @@
 # @Copyright@
 
 PKGROOT = /opt/gnu/mpc
-SOURCE = mpc-$(VERSION)
+SOURCE = $(MPC_NAME)-$(MPC_VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
+include pull.mk
 
-build:
+build: $(SRC_DIRS)
 	mkdir -p $(REDHAT.ROOT)/src/build-mpc
 	mkdir -p $(PKGROOT)
 	mkdir -p /opt/gnu/mpfr
