@@ -55,12 +55,13 @@
 # @Copyright@
 
 PKGROOT = /opt/gnu/gcc
-SOURCE = gcc-$(VERSION)
+SOURCE = $(GCC_NAME)-$(GCC_VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
+include pull.mk
 
-build:
+build: $(SRC_DIRS)
 	mkdir -p -m 755 $(PKGROOT)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	mkdir -p -m 755 /opt/gnu/mpc
