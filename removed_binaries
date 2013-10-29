@@ -1,0 +1,11 @@
+111363626  f9d19ace3e10828007461f9fab1947ef9ce5ae2d  src/gcc/gcc-4.8.1.tar.gz
+93426552   b5e46f2296e263269cf25e4f60d79ff17f0debc5  src/gcc/gcc-4.6.1.tar.gz
+2973688    9e849b64c0d21926b7e6acf14785359ce3714651  src/gmp/gmp-5.1.2.tar.gz
+2497750    19c3b0c130a7d52e0870de3dc5ff0230b130deff  src/gmp/gmp-4.3.2.tar.gz
+2052144    42af0ef03fecccf7947845e99290613e5cabf954  src/gmp/gmp-5.0.5.tar.bz2
+1621228    feb7e115d8abe3c35a8f957ac4367526cc43a74b  src/mpfr/mpfr-3.1.2.tar.gz
+1613354    6f463833a48f6fb0726b537ec5ebfda459d6a4a3  src/mpfr/mpfr-3.1.1.tar.gz
+1478243    7533a4e3125b258e9794b6f49838370fe3fe7670  src/mpfr/mpfr-3.0.1.tar.gz
+628311     d04e76e2de2978245564e3ee04b5265d7551886d  src/mpc/mpc-1.0.tar.gz
+624125     b3bed4a2fd2a6cb2d624d903a2e15280962f42e5  src/mpc/mpc-1.0.1.tar.gz
+565953     8cb6d04fe943634295e51e837ca9d6eb0f15c1e4  src/mpc/mpc-0.9.tar.gz
