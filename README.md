@@ -1,4 +1,4 @@
 gnucompiler-roll
 ================
 
-The Triton gnu compiler roll is in development.
+The Triton gnucompiler-roll is in development.
