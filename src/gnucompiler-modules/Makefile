@@ -68,7 +68,9 @@ install::
            cat gcc.module| perl -pi -e "s!ROOT_PKGROOT!$(ROOT)!g;s!MODULEROOT!/opt/modulefiles/compilers/gnu!;s!MODULEBUILD!$(REDHAT.ROOT)/src/build-gnucompiler-modules!g;s!VERSION!$(VERSION)!g" > gcc.module.tmp; \
            bash gcc.module.tmp; \
            rm -f gcc.module.tmp; \
-           rm -f *.mod \
+           rm -f *.mod; \
+           cd $(ROOT)/opt/modulefiles/compilers/gnu; \
+           ln -s .version.$(VERSION) .version
         )
 
 
