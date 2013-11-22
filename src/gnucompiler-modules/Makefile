@@ -70,7 +70,7 @@ install::
            rm -f gcc.module.tmp; \
            rm -f *.mod; \
            cd $(ROOT)/opt/modulefiles/compilers/gnu; \
-           ln -s .version.$(VERSION) .version
+           ln -s .version.$(VERSION) .version \
         )
 
 
