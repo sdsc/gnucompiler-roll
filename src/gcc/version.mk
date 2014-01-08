@@ -1,6 +1,7 @@
 NAME    = opt-gcc
 VERSION = 4.8.2
 RELEASE = 0
+RPM.EXTRAS         = AutoReq:No
 
 SRC_SUBDIR	= gcc
 

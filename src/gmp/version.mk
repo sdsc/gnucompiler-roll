@@ -1,6 +1,7 @@
 NAME    = opt-gmp
 VERSION = 5.1.3
 RELEASE = 0
+RPM.EXTRAS         = AutoReq:No
 
 SRC_SUBDIR	= gmp
 
