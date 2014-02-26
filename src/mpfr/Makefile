@@ -64,7 +64,7 @@ include pull.mk
 build: $(SRC_DIRS)
 	mkdir -p $(REDHAT.ROOT)/src/build-mpfr 
 	mkdir -p $(PKGROOT)
-	mkdir -p /opt/gnu/gmp
+	-mkdir -p /opt/gnu/gmp
 	tar zxvf $(SOURCE).tar.gz
 	mount --bind $(REDHAT.ROOT)/src/build-mpfr  $(PKGROOT)
 	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gnu/gmp
@@ -76,7 +76,8 @@ build: $(SRC_DIRS)
 	)
 	umount $(PKGROOT)
 	umount /opt/gnu/gmp
-	rm -rf /opt/gnu/gmp
+	-rmdir /opt/gnu/gmp
+	-rmdir /opt/gnu
 	rm -rf $(PKGROOT)
 
 install::

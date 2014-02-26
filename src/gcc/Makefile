@@ -64,9 +64,9 @@ include pull.mk
 build: $(SRC_DIRS)
 	mkdir -p -m 755 $(PKGROOT)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
-	mkdir -p -m 755 /opt/gnu/mpc
-	mkdir -p -m 755 /opt/gnu/gmp
-	mkdir -p -m 755 /opt/gnu/mpfr
+	-mkdir -p -m 755 /opt/gnu/mpc
+	-mkdir -p -m 755 /opt/gnu/gmp
+	-mkdir -p -m 755 /opt/gnu/mpfr
 	tar zxvf $(SOURCE).tar.gz
 	yum install glibc-devel.i686
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
@@ -86,17 +86,18 @@ build: $(SRC_DIRS)
 	umount /opt/gnu/mpc
 	umount /opt/gnu/gmp
 	umount /opt/gnu/mpfr
-	rm -rf  /opt/gnu/mpc
-	rm -rf  /opt/gnu/gmp
-	rm -rf  /opt/gnu/mpfr
+	-rmdir /opt/gnu/mpc
+	-rmdir /opt/gnu/gmp
+	-rmdir /opt/gnu/mpfr
+	-rmdir /opt/gnu
 	rm -rf  $(PKGROOT)
 
 install::
 	mkdir -p -m 755 $(PKGROOT)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
-	mkdir -p -m 755 /opt/gnu/mpc
-	mkdir -p -m 755 /opt/gnu/gmp
-	mkdir -p -m 755 /opt/gnu/mpfr
+	-mkdir -p -m 755 /opt/gnu/mpc
+	-mkdir -p -m 755 /opt/gnu/gmp
+	-mkdir -p -m 755 /opt/gnu/mpfr
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	mount --bind $(REDHAT.ROOT)/src/build-mpc  /opt/gnu/mpc
 	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gnu/gmp
@@ -110,9 +111,10 @@ install::
 	umount /opt/gnu/mpc
 	umount /opt/gnu/gmp
 	umount /opt/gnu/mpfr
-	rm -rf  /opt/gnu/mpc
-	rm -rf /opt/gnu/gmp
-	rm -rf /opt/gnu/mpfr
+	-rmdir /opt/gnu/mpc
+	-rmdir /opt/gnu/gmp
+	-rmdir /opt/gnu/mpfr
+	-rmdir /opt/gnu
 	rm -rf $(PKGROOT)
 
 clean::
