@@ -55,7 +55,7 @@
 # @Copyright@
 
 PKGROOT = /opt/gnu/mpc
-SOURCE = $(MPC_NAME)-$(MPC_VERSION)
+SOURCE = $(MPC_NAME)-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
@@ -66,7 +66,6 @@ build: $(SRC_DIRS)
 	mkdir -p $(PKGROOT)
 	-mkdir -p /opt/gnu/mpfr
 	-mkdir -p /opt/gnu/gmp
-	-mkdir -p /opt/gnu/mpc
 	tar zxvf $(SOURCE).tar.gz
 	mount --bind $(REDHAT.ROOT)/src/build-mpc  $(PKGROOT)
 	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gnu/gmp
@@ -79,12 +78,10 @@ build: $(SRC_DIRS)
           make install \
 	)
 	umount $(PKGROOT)
-	umount /opt/gnu/mpc
 	umount /opt/gnu/gmp
 	umount /opt/gnu/mpfr
-	-rmdir /opt/gnu/mpc
-	-rmdir /opt/gnu/mpfr
 	-rmdir /opt/gnu/gmp
+	-rmdir /opt/gnu/mpfr
 	-rmdir /opt/gnu
 	rm -rf $(PKGROOT)
 
