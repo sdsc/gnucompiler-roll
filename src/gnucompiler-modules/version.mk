@@ -1,4 +1,4 @@
 NAME    	= gnucompiler-modules
 VERSION 	= 4.8.2
-RELEASE 	= 0
-RPM.EXTRAS         = AutoReq:No
+RELEASE 	= 1
+RPM.EXTRAS	= AutoReq:No

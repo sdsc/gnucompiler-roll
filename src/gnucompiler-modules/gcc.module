@@ -39,9 +39,6 @@ foreach path [glob -nocomplain /opt/modulefiles/*/.gnu] {
 set gccHome /opt/gnu
 prepend-path PATH \$gccHome/gcc/bin
 prepend-path LD_LIBRARY_PATH \$gccHome/gcc/lib64:\$gccHome/gmp/lib:\$gccHome/mpfr/lib:\$gccHome/mpc/lib
-setenv GMPHOME \$gccHome/gmp
-setenv MPCHOME \$gccHome/mpc
-setenv MPFRHOME \$gccHome/mpfr
 END
 
 chmod 0644  ROOT_PKGROOTMODULEROOT/VERSION
