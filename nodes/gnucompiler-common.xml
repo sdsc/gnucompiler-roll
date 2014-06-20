@@ -22,10 +22,6 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>opt-mpfr</package>
 <package>opt-mpc</package>
 <package>gnucompiler-modules</package>
-
-<post>
-
-
-</post>
+<package>gnucompiler-roll-test</package>
 
 </kickstart>
