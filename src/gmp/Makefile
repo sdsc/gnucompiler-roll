@@ -62,21 +62,20 @@ REDHAT.ROOT = $(PWD)/../../
 include pull.mk
 
 build: $(SRC_DIRS)
-	mkdir -p -m 755 $(PKGROOT)
-	mkdir -p -m 755 $(REDHAT.ROOT)/src/build-gmp
-	tar xvf $(SOURCE).tar.gz
-	mount --bind $(REDHAT.ROOT)/src/build-gmp  $(PKGROOT)
 	( \
 	  cd $(SOURCE); \
 	  ./configure --prefix=$(PKGROOT); \
-          make; \
-          make install \
+	  make \
 	)
-	umount $(PKGROOT)
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
-	cp -r $(REDHAT.ROOT)/src/build-gmp/* $(ROOT)/$(PKGROOT)
+	( \
+	  cd $(SOURCE); \
+	  make prefix=$(ROOT)/$(PKGROOT) install \
+	)
+	mkdir -p -m 755 $(REDHAT.ROOT)/src/build-gmp
+	cp -r $(ROOT)/$(PKGROOT)/* $(REDHAT.ROOT)/src/build-gmp/
 
 clean::
 	rm -rf $(SOURCE)

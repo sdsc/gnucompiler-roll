@@ -66,8 +66,8 @@ build:
 
 install::
 	  mkdir -p $(ROOT)/$(PKGROOT)
-	  cp gnu.module $(ROOT)/$(PKGROOT)/$(VERSION)
-	  cp gnu.version $(ROOT)/$(PKGROOT)/.version.$(VERSION)
+	  cp gcc.module $(ROOT)/$(PKGROOT)/$(VERSION)
+	  cp gcc.version $(ROOT)/$(PKGROOT)/.version.$(VERSION)
 	  perl -pi -e 's/VERSION/$(VERSION)/g' $(ROOT)/$(PKGROOT)/$(VERSION)
 	  perl -pi -e 's/VERSION/$(VERSION)/g' $(ROOT)/$(PKGROOT)/.version.$(VERSION)
 	  ln -s $(PKGROOT)/.version.$(VERSION) $(ROOT)/$(PKGROOT)/.version

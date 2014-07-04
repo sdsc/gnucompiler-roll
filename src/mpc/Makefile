@@ -62,32 +62,22 @@ REDHAT.ROOT = $(PWD)/../../
 include pull.mk
 
 build: $(SRC_DIRS)
-	mkdir -p $(REDHAT.ROOT)/src/build-mpc
-	mkdir -p $(PKGROOT)
-	-mkdir -p /opt/gnu/mpfr
-	-mkdir -p /opt/gnu/gmp
-	tar zxvf $(SOURCE).tar.gz
-	mount --bind $(REDHAT.ROOT)/src/build-mpc  $(PKGROOT)
-	mount --bind $(REDHAT.ROOT)/src/build-gmp  /opt/gnu/gmp
-	mount --bind $(REDHAT.ROOT)/src/build-mpfr  /opt/gnu/mpfr
 	( \
 	  cd $(SOURCE); \
-	  ./configure --prefix=$(PKGROOT) --with-gmp=/opt/gnu/gmp\
-             --with-mpfr=/opt/gnu/mpfr; \
-          make; \
-          make install \
+	  ./configure --prefix=$(PKGROOT) \
+	              --with-gmp=$(REDHAT.ROOT)/src/build-gmp \
+	              --with-mpfr=$(REDHAT.ROOT)/src/build-mpfr; \
+	  make \
 	)
-	umount $(PKGROOT)
-	umount /opt/gnu/gmp
-	umount /opt/gnu/mpfr
-	-rmdir /opt/gnu/gmp
-	-rmdir /opt/gnu/mpfr
-	-rmdir /opt/gnu
-	rm -rf $(PKGROOT)
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
-	cp -r $(REDHAT.ROOT)/src/build-mpc/* $(ROOT)/$(PKGROOT)
+	( \
+	  cd $(SOURCE); \
+	  make prefix=$(ROOT)/$(PKGROOT) install \
+	)
+	mkdir -p -m 755 $(REDHAT.ROOT)/src/build-mpc
+	cp -r $(ROOT)/$(PKGROOT)/* $(REDHAT.ROOT)/src/build-mpc/
 
 clean::
 	rm -rf $(SOURCE)

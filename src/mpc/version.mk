@@ -1,6 +1,6 @@
 NAME    = opt-mpc
 VERSION = 1.0.2
-RELEASE = 0
+RELEASE = 1
 RPM.EXTRAS         = AutoReq:No
 
 SRC_SUBDIR	= mpc
