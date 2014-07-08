@@ -6,9 +6,6 @@
 
 use Test::More qw(no_plan);
 
-# TODO figure programmatically
-my $VERSION = '4.8.2';
-
 my $appliance = $#ARGV >= 0 ? $ARGV[0] :
                 -d '/export/rocks/install' ? 'Frontend' : 'Compute';
 my $installedOnAppliancesPattern = '.';
@@ -43,9 +40,13 @@ SKIP: {
 
   skip 'gnu compilers not installed', 9 if ! $isInstalled;
   my $modulesInstalled = -f '/etc/profile.d/modules.sh';
-  my $setup = $modulesInstalled ?
-              ". /etc/profile.d/modules.sh; module load gnu/$VERSION" :
-              'echo > /dev/null'; # noop
+  my $setup = 'echo > /dev/null'; # noop
+  if($modulesInstalled) {
+    my $moduleAvail =  `. /etc/profile.d/modules.sh; module avail 2>&1`;
+    my @gnuModules = ($moduleAvail =~ m#\b(gnu/[\d\.]+)#);
+    $setup = ". /etc/profile.d/modules.sh;module load $gnuModules[$#gnuModules]"
+      if int(@gnuModules) > 0;
+  }
 
   $output = `$setup; gcc -o $TESTFILE $TESTFILE.c 2>&1`;
   ok($? == 0, 'gnu C compiler works');
