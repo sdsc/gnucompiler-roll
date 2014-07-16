@@ -61,21 +61,27 @@ REDHAT.ROOT = $(PWD)/../../
 -include $(ROCKSROOT)/etc/Rules.mk
 include pull.mk
 
+CACHE_DIR = $(REDHAT.ROOT)/src/cache
+
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE); \
-	  ./configure --prefix=$(PKGROOT); \
+	  ./configure --prefix=$(ROOT)/$(PKGROOT); \
 	  make \
 	)
 
+# Installation directory written into installed file lib/libgmp.la, requiring
+# bind mounts.
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
 	  cd $(SOURCE); \
-	  make prefix=$(ROOT)/$(PKGROOT) install \
+	  make install \
 	)
-	mkdir -p -m 755 $(REDHAT.ROOT)/src/build-gmp
-	cp -r $(ROOT)/$(PKGROOT)/* $(REDHAT.ROOT)/src/build-gmp/
+	mkdir -p -m 755 $(CACHE_DIR)/gmp
+	cp -r $(ROOT)/$(PKGROOT)/* $(CACHE_DIR)/gmp
+	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(PKGROOT)#" $(ROOT)/$(PKGROOT)/lib/libgmp.la
+	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(CACHE_DIR)/gmp#" $(CACHE_DIR)/gmp/lib/libgmp.la
 
 clean::
 	rm -rf $(SOURCE)

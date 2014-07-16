@@ -61,22 +61,27 @@ REDHAT.ROOT = $(PWD)/../../
 -include $(ROCKSROOT)/etc/Rules.mk
 include pull.mk
 
+CACHE_DIR = $(REDHAT.ROOT)/src/cache
+
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE); \
-	  ./configure --prefix=$(PKGROOT) \
-	              --with-gmp=$(REDHAT.ROOT)/src/build-gmp; \
-          make \
+	  ./configure --prefix=$(ROOT)/$(PKGROOT) --with-gmp=$(CACHE_DIR)/gmp; \
+	  make \
 	)
 
+# Installation directory written into installed file lib/libmpfr.la, requiring
+# bind mounts.
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
 	  cd $(SOURCE); \
-	  make prefix=$(ROOT)/$(PKGROOT) install \
+	  make install \
 	)
-	mkdir -p $(REDHAT.ROOT)/src/build-mpfr 
-	cp -r $(ROOT)/$(PKGROOT)/* $(REDHAT.ROOT)/src/build-mpfr/
+	mkdir -p -m 755 $(CACHE_DIR)/mpfr
+	cp -r $(ROOT)/$(PKGROOT)/* $(CACHE_DIR)/mpfr/
+	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(PKGROOT)#" $(ROOT)/$(PKGROOT)/lib/libmpfr.la
+	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(CACHE_DIR)/mpfr#" $(CACHE_DIR)/mpfr/lib/libmpfr.la
 
 clean::
 	rm -rf $(SOURCE)

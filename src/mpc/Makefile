@@ -61,23 +61,29 @@ REDHAT.ROOT = $(PWD)/../../
 -include $(ROCKSROOT)/etc/Rules.mk
 include pull.mk
 
+CACHE_DIR = $(REDHAT.ROOT)/src/cache
+
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE); \
-	  ./configure --prefix=$(PKGROOT) \
-	              --with-gmp=$(REDHAT.ROOT)/src/build-gmp \
-	              --with-mpfr=$(REDHAT.ROOT)/src/build-mpfr; \
+	  ./configure --prefix=$(ROOT)/$(PKGROOT) \
+	              --with-gmp=$(CACHE_DIR)/gmp \
+	              --with-mpfr=$(CACHE_DIR)/mpfr; \
 	  make \
 	)
 
+# Installation directory written into installed file lib/libmpc.la, requiring
+# bind mounts.
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
 	  cd $(SOURCE); \
-	  make prefix=$(ROOT)/$(PKGROOT) install \
+	  make install \
 	)
-	mkdir -p -m 755 $(REDHAT.ROOT)/src/build-mpc
-	cp -r $(ROOT)/$(PKGROOT)/* $(REDHAT.ROOT)/src/build-mpc/
+	mkdir -p -m 755 $(CACHE_DIR)/mpc
+	cp -r $(ROOT)/$(PKGROOT)/* $(CACHE_DIR)/mpc/
+	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(PKGROOT)#" $(ROOT)/$(PKGROOT)/lib/libmpc.la
+	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(CACHE_DIR)/mpc#" $(CACHE_DIR)/mpc/lib/libmpc.la
 
 clean::
 	rm -rf $(SOURCE)

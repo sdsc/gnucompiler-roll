@@ -61,26 +61,27 @@ REDHAT.ROOT = $(PWD)/../../
 -include $(ROCKSROOT)/etc/Rules.mk
 include pull.mk
 
+CACHE_DIR = $(REDHAT.ROOT)/src/cache
 
+# Build uses /opt/gnu/* install path written to */lib/lib*.la, so we have
+# to use bind mounts to get it to used our cached copies.
 build: $(SRC_DIRS)
-	yum install glibc-devel.i686
 	( \
 	  cd $(SOURCE); \
-	  export LD_LIBRARY_PATH=$(REDHAT.ROOT)/src/build-gmp/lib:$(REDHAT.ROOT)/src/build-mpfr/lib:$(REDHAT.ROOT)/src/build-mpc/lib:$${LD_LIBRARY_PATH}; \
+	  export LD_LIBRARY_PATH=$(CACHE_DIR)/gmp/lib:$(CACHE_DIR)/mpfr/lib:$(CACHE_DIR)/mpc/lib:$${LD_LIBRARY_PATH}; \
 	  ./configure --prefix=$(PKGROOT) \
-	              --with-gmp=$(REDHAT.ROOT)/src/build-gmp \
-	              --with-mpfr=$(REDHAT.ROOT)/src/build-mpfr \
-	              --with-mpc=$(REDHAT.ROOT)/src/build-mpc; \
+	              --with-gmp=$(CACHE_DIR)/gmp \
+	              --with-mpfr=$(CACHE_DIR)/mpfr \
+	              --with-mpc=$(CACHE_DIR)/mpc \
 	              --disable-multilib; \
 	  make -j 16 \
 	)
 
-
 install::
 	( \
-	  export LD_LIBRARY_PATH=$(REDHAT.ROOT)/src/build-gmp/lib:$(REDHAT.ROOT)/src/build-mpfr/lib:$(REDHAT.ROOT)/src/build-mpc/lib:$${LD_LIBRARY_PATH}; \
 	  cd $(SOURCE); \
-	  make prefix=$(ROOT)/$(PKGROOT) -j 16 install \
+	  export LD_LIBRARY_PATH=$(CACHE_DIR)/gmp/lib:$(CACHE_DIR)/mpfr/lib:$(CACHE_DIR)/mpc/lib:$${LD_LIBRARY_PATH}; \
+	  make prefix=$(ROOT)/$(PKGROOT) install \
 	)
 
 clean::
