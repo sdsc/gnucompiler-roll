@@ -63,5 +63,5 @@ clean::
 	rm -f _arch bootstrap.py
 
 distclean: clean
-	rm -fr RPMS SRPMS src/build-*
+	rm -fr RPMS SRPMS src/cache
 	-rm -f _arch build.log
