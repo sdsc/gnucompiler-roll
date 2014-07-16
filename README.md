@@ -16,7 +16,7 @@ machine (e.g., a frontend or development appliance).
 
 ## Dependencies
 
-None.
+yum install glibc-devel.i686
 
 
 ## Building
