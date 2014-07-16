@@ -70,8 +70,6 @@ build: $(SRC_DIRS)
 	  make \
 	)
 
-# Installation directory written into installed file lib/libmpfr.la, requiring
-# bind mounts.
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
@@ -80,6 +78,7 @@ install::
 	)
 	mkdir -p -m 755 $(CACHE_DIR)/mpfr
 	cp -r $(ROOT)/$(PKGROOT)/* $(CACHE_DIR)/mpfr/
+	# Fix installation directory written into installed file lib/libmpfr.la
 	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(PKGROOT)#" $(ROOT)/$(PKGROOT)/lib/libmpfr.la
 	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(CACHE_DIR)/mpfr#" $(CACHE_DIR)/mpfr/lib/libmpfr.la
 

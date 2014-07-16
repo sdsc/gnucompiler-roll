@@ -70,8 +70,6 @@ build: $(SRC_DIRS)
 	  make \
 	)
 
-# Installation directory written into installed file lib/libgmp.la, requiring
-# bind mounts.
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
@@ -80,6 +78,7 @@ install::
 	)
 	mkdir -p -m 755 $(CACHE_DIR)/gmp
 	cp -r $(ROOT)/$(PKGROOT)/* $(CACHE_DIR)/gmp
+	# Fix installation directory written into installed file lib/libgmp.la
 	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(PKGROOT)#" $(ROOT)/$(PKGROOT)/lib/libgmp.la
 	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(CACHE_DIR)/gmp#" $(CACHE_DIR)/gmp/lib/libgmp.la
 

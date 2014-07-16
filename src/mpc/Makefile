@@ -72,8 +72,6 @@ build: $(SRC_DIRS)
 	  make \
 	)
 
-# Installation directory written into installed file lib/libmpc.la, requiring
-# bind mounts.
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
@@ -82,6 +80,7 @@ install::
 	)
 	mkdir -p -m 755 $(CACHE_DIR)/mpc
 	cp -r $(ROOT)/$(PKGROOT)/* $(CACHE_DIR)/mpc/
+	# Fix installation directory written into installed file lib/libmpc.la
 	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(PKGROOT)#" $(ROOT)/$(PKGROOT)/lib/libmpc.la
 	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(CACHE_DIR)/mpc#" $(CACHE_DIR)/mpc/lib/libmpc.la
 

@@ -63,8 +63,6 @@ include pull.mk
 
 CACHE_DIR = $(REDHAT.ROOT)/src/cache
 
-# Build uses /opt/gnu/* install path written to */lib/lib*.la, so we have
-# to use bind mounts to get it to used our cached copies.
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE); \
