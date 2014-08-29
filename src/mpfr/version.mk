@@ -1,12 +1,16 @@
-NAME    = opt-mpfr
-VERSION = 3.1.2
-RELEASE = 1
-RPM.EXTRAS         = AutoReq:No
+NAME           = opt-mpfr
+VERSION        = 3.1.2
+RELEASE        = 1
+PKGROOT        = /opt/gnu/mpfr
 
-SRC_SUBDIR	= mpfr
+SRC_SUBDIR     = mpfr
 
-MPFR_NAME	= mpfr
-MPFR_VERSION	= 3.1.2
+SOURCE_NAME    = mpfr
+SOURCE_SUFFIX  = tar.gz
+SOURCE_VERSION = 3.1.2
+SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
+SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
-# List of *.tar.gz packages that are part of THIS package
-TAR_GZ_PKGS = $(MPFR_NAME)-$(MPFR_VERSION).tar.gz
+TAR_GZ_PKGS    = $(SOURCE_PKG)
+
+RPM.EXTRAS     = AutoReq:No

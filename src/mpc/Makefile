@@ -54,8 +54,6 @@
 #
 # @Copyright@
 
-PKGROOT = /opt/gnu/mpc
-SOURCE = $(MPC_NAME)-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
@@ -65,7 +63,7 @@ CACHE_DIR = $(REDHAT.ROOT)/src/cache
 
 build: $(SRC_DIRS)
 	( \
-	  cd $(SOURCE); \
+	  cd $(SOURCE_DIR); \
 	  ./configure --prefix=$(ROOT)/$(PKGROOT) \
 	              --with-gmp=$(CACHE_DIR)/gmp \
 	              --with-mpfr=$(CACHE_DIR)/mpfr; \
@@ -75,7 +73,7 @@ build: $(SRC_DIRS)
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
-	  cd $(SOURCE); \
+	  cd $(SOURCE_DIR); \
 	  make install \
 	)
 	mkdir -p -m 755 $(CACHE_DIR)/mpc
@@ -85,4 +83,4 @@ install::
 	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(CACHE_DIR)/mpc#" $(CACHE_DIR)/mpc/lib/libmpc.la
 
 clean::
-	rm -rf $(SOURCE)
+	rm -rf $(SOURCE_DIR)

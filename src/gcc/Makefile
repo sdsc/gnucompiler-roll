@@ -54,8 +54,6 @@
 #
 # @Copyright@
 
-PKGROOT = /opt/gnu/gcc
-SOURCE = $(GCC_NAME)-$(GCC_VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
@@ -65,7 +63,7 @@ CACHE_DIR = $(REDHAT.ROOT)/src/cache
 
 build: $(SRC_DIRS)
 	( \
-	  cd $(SOURCE); \
+	  cd $(SOURCE_DIR); \
 	  export LD_LIBRARY_PATH=$(CACHE_DIR)/gmp/lib:$(CACHE_DIR)/mpfr/lib:$(CACHE_DIR)/mpc/lib:$${LD_LIBRARY_PATH}; \
 	  ./configure --prefix=$(PKGROOT) \
 	              --with-gmp=$(CACHE_DIR)/gmp \
@@ -77,10 +75,10 @@ build: $(SRC_DIRS)
 
 install::
 	( \
-	  cd $(SOURCE); \
+	  cd $(SOURCE_DIR); \
 	  export LD_LIBRARY_PATH=$(CACHE_DIR)/gmp/lib:$(CACHE_DIR)/mpfr/lib:$(CACHE_DIR)/mpc/lib:$${LD_LIBRARY_PATH}; \
 	  make prefix=$(ROOT)/$(PKGROOT) install \
 	)
 
 clean::
-	rm -rf $(SOURCE)
+	rm -rf $(SOURCE_DIR)
