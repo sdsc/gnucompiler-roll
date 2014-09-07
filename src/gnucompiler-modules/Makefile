@@ -56,8 +56,13 @@
 #
 # $Log$
 
-PKGROOT = /opt/modulefiles/compilers/gnu
+PKGROOT = /opt/modulefiles
 REDHAT.ROOT = $(CURDIR)/../../
+
+GCCROOT = $(PKGROOT)/compilers/gnu
+GMPROOT = $(PKGROOT)/applications/gmp
+MPCROOT = $(PKGROOT)/applications/mpc
+MPFRROOT = $(PKGROOT)/applications/mpfr
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
@@ -65,11 +70,32 @@ include Rules.mk
 build:
 
 install::
-	  mkdir -p $(ROOT)/$(PKGROOT)
-	  cp gcc.module $(ROOT)/$(PKGROOT)/$(VERSION)
-	  cp gcc.version $(ROOT)/$(PKGROOT)/.version.$(VERSION)
-	  perl -pi -e 's/VERSION/$(VERSION)/g' $(ROOT)/$(PKGROOT)/$(VERSION)
-	  perl -pi -e 's/VERSION/$(VERSION)/g' $(ROOT)/$(PKGROOT)/.version.$(VERSION)
-	  ln -s $(PKGROOT)/.version.$(VERSION) $(ROOT)/$(PKGROOT)/.version
+	mkdir -p $(ROOT)/$(GCCROOT)
+	cp gcc.module $(ROOT)/$(GCCROOT)/$(VERSION)
+	cp gcc.version $(ROOT)/$(GCCROOT)/.version.$(VERSION)
+	perl -pi -e 's/VERSION/$(VERSION)/g' $(ROOT)/$(GCCROOT)/$(VERSION)
+	perl -pi -e 's/VERSION/$(VERSION)/g' $(ROOT)/$(GCCROOT)/.version.$(VERSION)
+	ln -s $(GCCROOT)/.version.$(VERSION) $(ROOT)/$(GCCROOT)/.version
+	
+	mkdir -p $(ROOT)/$(GMPROOT)
+	cp gmp.module $(ROOT)/$(GMPROOT)/$(GMP_VERSION)
+	cp gmp.version $(ROOT)/$(GMPROOT)/.version.$(GMP_VERSION)
+	perl -pi -e 's/VERSION/$(GMP_VERSION)/g' $(ROOT)/$(GMPROOT)/$(GMP_VERSION)
+	perl -pi -e 's/VERSION/$(GMP_VERSION)/g' $(ROOT)/$(GMPROOT)/.version.$(GMP_VERSION)
+	ln -s $(GMPROOT)/.version.$(GMP_VERSION) $(ROOT)/$(GMPROOT)/.version
+	
+	mkdir -p $(ROOT)/$(MPCROOT)
+	cp mpc.module $(ROOT)/$(MPCROOT)/$(MPC_VERSION)
+	cp mpc.version $(ROOT)/$(MPCROOT)/.version.$(MPC_VERSION)
+	perl -pi -e 's/VERSION/$(MPC_VERSION)/g' $(ROOT)/$(MPCROOT)/$(MPC_VERSION)
+	perl -pi -e 's/VERSION/$(MPC_VERSION)/g' $(ROOT)/$(MPCROOT)/.version.$(MPC_VERSION)
+	ln -s $(MPCROOT)/.version.$(MPC_VERSION) $(ROOT)/$(MPCROOT)/.version
+	
+	mkdir -p $(ROOT)/$(MPFRROOT)
+	cp gcc.module $(ROOT)/$(MPFRROOT)/$(MPFR_VERSION)
+	cp gcc.version $(ROOT)/$(MPFRROOT)/.version.$(MPFR_VERSION)
+	perl -pi -e 's/VERSION/$(MPFR_VERSION)/g' $(ROOT)/$(MPFRROOT)/$(MPFR_VERSION)
+	perl -pi -e 's/VERSION/$(MPFR_VERSION)/g' $(ROOT)/$(MPFRROOT)/.version.$(MPFR_VERSION)
+	ln -s $(MPFRROOT)/.version.$(MPFR_VERSION) $(ROOT)/$(MPFRROOT)/.version
 
 clean::

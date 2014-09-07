@@ -1,0 +1,7 @@
+#%Module1.0
+module-whatis "Gnu MPC library"
+module-whatis "Version: MPC_VERSION" 
+module-whatis "Description: MPC library"
+
+setenv MPCHOME /opt/gnu/mpc
+prepend-path LD_LIBRARY_PATH /opt/gnu/mpc/lib

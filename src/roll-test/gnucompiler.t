@@ -153,13 +153,35 @@ SKIP: {
   ok($? == 0, 'mpc package run');
   like($output, qr/0 1.44363547517881034249327674027310526938/, 'mpc package output');
 
-  skip 'modules not installed', 3 if ! $modulesInstalled;
+  skip 'modules not installed', 12 if ! $modulesInstalled;
+
   `/bin/ls /opt/modulefiles/compilers/gnu/[0-9.]* 2>&1`;
   ok($? == 0, 'gnu module installed');
   `/bin/ls /opt/modulefiles/compilers/gnu/.version.[0-9.]* 2>&1`;
   ok($? == 0, 'gnu version module installed');
   ok(-l '/opt/modulefiles/compilers/gnu/.version',
      'gnu version module link created');
+
+  `/bin/ls /opt/modulefiles/applications/gmp/[0-9.]* 2>&1`;
+  ok($? == 0, 'gmp module installed');
+  `/bin/ls /opt/modulefiles/applications/gmp/.version.[0-9.]* 2>&1`;
+  ok($? == 0, 'gmp version module installed');
+  ok(-l '/opt/modulefiles/applications/gmp/.version',
+     'gmp version module link created');
+
+  `/bin/ls /opt/modulefiles/applications/mpc/[0-9.]* 2>&1`;
+  ok($? == 0, 'mpc module installed');
+  `/bin/ls /opt/modulefiles/applications/mpc/.version.[0-9.]* 2>&1`;
+  ok($? == 0, 'mpc version module installed');
+  ok(-l '/opt/modulefiles/applications/mpc/.version',
+     'mpc version module link created');
+
+  `/bin/ls /opt/modulefiles/applications/mpfr/[0-9.]* 2>&1`;
+  ok($? == 0, 'mpfr module installed');
+  `/bin/ls /opt/modulefiles/applications/mpfr/.version.[0-9.]* 2>&1`;
+  ok($? == 0, 'mpfr version module installed');
+  ok(-l '/opt/modulefiles/applications/mpfr/.version',
+     'mpfr version module link created');
 
 }
 
