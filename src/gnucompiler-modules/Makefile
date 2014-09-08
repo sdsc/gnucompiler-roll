@@ -80,22 +80,22 @@ install::
 	mkdir -p $(ROOT)/$(GMPROOT)
 	cp gmp.module $(ROOT)/$(GMPROOT)/$(GMP_VERSION)
 	cp gmp.version $(ROOT)/$(GMPROOT)/.version.$(GMP_VERSION)
-	perl -pi -e 's/VERSION/$(GMP_VERSION)/g' $(ROOT)/$(GMPROOT)/$(GMP_VERSION)
-	perl -pi -e 's/VERSION/$(GMP_VERSION)/g' $(ROOT)/$(GMPROOT)/.version.$(GMP_VERSION)
+	perl -pi -e 's/GMP_VERSION/$(GMP_VERSION)/g' $(ROOT)/$(GMPROOT)/$(GMP_VERSION)
+	perl -pi -e 's/GMP_VERSION/$(GMP_VERSION)/g' $(ROOT)/$(GMPROOT)/.version.$(GMP_VERSION)
 	ln -s $(GMPROOT)/.version.$(GMP_VERSION) $(ROOT)/$(GMPROOT)/.version
 	
 	mkdir -p $(ROOT)/$(MPCROOT)
 	cp mpc.module $(ROOT)/$(MPCROOT)/$(MPC_VERSION)
 	cp mpc.version $(ROOT)/$(MPCROOT)/.version.$(MPC_VERSION)
-	perl -pi -e 's/VERSION/$(MPC_VERSION)/g' $(ROOT)/$(MPCROOT)/$(MPC_VERSION)
-	perl -pi -e 's/VERSION/$(MPC_VERSION)/g' $(ROOT)/$(MPCROOT)/.version.$(MPC_VERSION)
+	perl -pi -e 's/MPC_VERSION/$(MPC_VERSION)/g' $(ROOT)/$(MPCROOT)/$(MPC_VERSION)
+	perl -pi -e 's/MPC_VERSION/$(MPC_VERSION)/g' $(ROOT)/$(MPCROOT)/.version.$(MPC_VERSION)
 	ln -s $(MPCROOT)/.version.$(MPC_VERSION) $(ROOT)/$(MPCROOT)/.version
 	
 	mkdir -p $(ROOT)/$(MPFRROOT)
-	cp gcc.module $(ROOT)/$(MPFRROOT)/$(MPFR_VERSION)
-	cp gcc.version $(ROOT)/$(MPFRROOT)/.version.$(MPFR_VERSION)
-	perl -pi -e 's/VERSION/$(MPFR_VERSION)/g' $(ROOT)/$(MPFRROOT)/$(MPFR_VERSION)
-	perl -pi -e 's/VERSION/$(MPFR_VERSION)/g' $(ROOT)/$(MPFRROOT)/.version.$(MPFR_VERSION)
+	cp mpfr.module $(ROOT)/$(MPFRROOT)/$(MPFR_VERSION)
+	cp mpfr.version $(ROOT)/$(MPFRROOT)/.version.$(MPFR_VERSION)
+	perl -pi -e 's/MPFR_VERSION/$(MPFR_VERSION)/g' $(ROOT)/$(MPFRROOT)/$(MPFR_VERSION)
+	perl -pi -e 's/MPFR_VERSION/$(MPFR_VERSION)/g' $(ROOT)/$(MPFRROOT)/.version.$(MPFR_VERSION)
 	ln -s $(MPFRROOT)/.version.$(MPFR_VERSION) $(ROOT)/$(MPFRROOT)/.version
 
 clean::

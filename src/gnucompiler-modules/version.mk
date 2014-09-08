@@ -1,6 +1,6 @@
 NAME         = gnucompiler-modules
 VERSION      = 4.8.2
-RELEASE      = 3
+RELEASE      = 4
 
 GMP_VERSION  = 5.1.3
 
