@@ -114,42 +114,34 @@ if($appliance =~ /$installedOnAppliancesPattern/) {
 SKIP: {
 
   skip 'gnu compilers not installed', 18 if ! $isInstalled;
-  my $modulesInstalled = -f '/etc/profile.d/modules.sh';
-  my $setup = 'echo > /dev/null'; # noop
-  if($modulesInstalled) {
-    my $moduleAvail =  `. /etc/profile.d/modules.sh; module avail 2>&1`;
-    my @gnuModules = ($moduleAvail =~ m#\b(gnu/[\d\.]+)#);
-    $setup = ". /etc/profile.d/modules.sh;module load $gnuModules[$#gnuModules]"
-      if int(@gnuModules) > 0;
-  }
 
-  $output = `$setup; gcc -o $TESTFILE $TESTFILE.c 2>&1`;
+  $output = `module load gnu; gcc -o $TESTFILE $TESTFILE.c 2>&1`;
   ok($? == 0, 'gnu C compiler works');
-  $output = `$setup; ./$TESTFILE`;
+  $output = `module load gnu; ./$TESTFILE`;
   ok($? == 0, 'compiled C program runs');
   like($output, qr/Hello world/, 'compile C program correct output');
 
-  $output = `$setup; gfortran -o $TESTFILE $TESTFILE.f 2>&1`;
+  $output = `module load gnu; gfortran -o $TESTFILE $TESTFILE.f 2>&1`;
   ok($? == 0, 'gnu FORTRAN compiler works');
-  $output = `$setup; ./$TESTFILE`;
+  $output = `module load gnu; ./$TESTFILE`;
   ok($? == 0, 'compiled FORTRAN program runs');
   like($output, qr/Hello world/, 'compile FORTRAN program correct output');
 
-  $output = `$setup; gcc -I /opt/gnu/gmp/include -L /opt/gnu/gmp/lib -lgmp -o ${TESTFILE}gmp ${TESTFILE}gmp.c 2>&1`;
+  $output = `module load gnu; gcc -I /opt/gnu/gmp/include -L /opt/gnu/gmp/lib -lgmp -o ${TESTFILE}gmp ${TESTFILE}gmp.c 2>&1`;
   ok($? == 0, 'gmp package compilation');
-  $output = `$setup; ./${TESTFILE}gmp`;
+  $output = `module load gnu; ./${TESTFILE}gmp`;
   ok($? == 0, 'gmp package run');
   like($output, qr/70514995317761165008628990709545/, 'gmp package output');
 
-  $output = `$setup; gcc -I /opt/gnu/mpfr/include -I /opt/gnu/gmp/include -L /opt/gnu/mpfr/lib -L /opt/gnu/gmp/lib -lmpfr -lgmp -o ${TESTFILE}mpfr ${TESTFILE}mpfr.c 2>&1`;
+  $output = `module load gnu; gcc -I /opt/gnu/mpfr/include -I /opt/gnu/gmp/include -L /opt/gnu/mpfr/lib -L /opt/gnu/gmp/lib -lmpfr -lgmp -o ${TESTFILE}mpfr ${TESTFILE}mpfr.c 2>&1`;
   ok($? == 0, 'mpfr package compilation');
-  $output = `$setup; ./${TESTFILE}mpfr`;
+  $output = `module load gnu; ./${TESTFILE}mpfr`;
   ok($? == 0, 'mpfr package run');
   like($output, qr/2.7182818284590452353602874713526624977572470936999595749669131/, 'mpfr package output');
 
-  $output = `$setup; gcc -I /opt/gnu/mpc/include -I /opt/gnu/mpfr/include -I /opt/gnu/gmp/include -L /opt/gnu/mpc/lib -L /opt/gnu/mpfr/lib -L /opt/gnu/gmp/lib -lmpc -lmpfr -lgmp -o ${TESTFILE}mpc ${TESTFILE}mpc.c 2>&1`;
+  $output = `module load gnu; gcc -I /opt/gnu/mpc/include -I /opt/gnu/mpfr/include -I /opt/gnu/gmp/include -L /opt/gnu/mpc/lib -L /opt/gnu/mpfr/lib -L /opt/gnu/gmp/lib -lmpc -lmpfr -lgmp -o ${TESTFILE}mpc ${TESTFILE}mpc.c 2>&1`;
   ok($? == 0, 'mpc package compilation');
-  $output = `$setup; ./${TESTFILE}mpc`;
+  $output = `module load gnu; ./${TESTFILE}mpc`;
   ok($? == 0, 'mpc package run');
   like($output, qr/0 1.44363547517881034249327674027310526938/, 'mpc package output');
 
