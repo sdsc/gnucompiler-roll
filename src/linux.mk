@@ -54,13 +54,11 @@
 # @Copyright@
 #
 
-
-SRCDIRS = `find . -maxdepth 1 -type d \
-        -not -name CVS \
-        -not -name gcc \
-        -not -name mpc \
-        -not -name mpfr \
-        -not -name gmp \
-        -not -name cache \
-        -not -name .` gmp mpfr mpc gcc
+# mpfr dependes on gmp
+# mpc depends on gmp, mpfr
+# gcc depends on gmp, mpfr, mpc
+SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
+  -not -name cache \
+  -not -name gcc -not -name mpc -not -name mpfr` \
+  mpfr mpc gcc
 

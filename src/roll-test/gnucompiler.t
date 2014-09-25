@@ -145,8 +145,6 @@ SKIP: {
   ok($? == 0, 'mpc package run');
   like($output, qr/0 1.44363547517881034249327674027310526938/, 'mpc package output');
 
-  skip 'modules not installed', 12 if ! $modulesInstalled;
-
   `/bin/ls /opt/modulefiles/compilers/gnu/[0-9.]* 2>&1`;
   ok($? == 0, 'gnu module installed');
   `/bin/ls /opt/modulefiles/compilers/gnu/.version.[0-9.]* 2>&1`;
