@@ -1,8 +1,11 @@
-NAME        = gcc-modules
-RELEASE     = 0
-PKGROOT     = /opt/modulefiles/compilers/gnu
+PACKAGE     = gcc
+CATEGORY    = compilers
 
-VERSION_SRC = $(REDHAT.ROOT)/src/gcc/version.mk
+NAME        = $(PACKAGE)-modules
+RELEASE     = 1
+PKGROOT     = /opt/modulefiles/$(CATEGORY)/gnu
+
+VERSION_SRC = $(REDHAT.ROOT)/src/$(PACKAGE)/version.mk
 VERSION_INC = version.inc
 include $(VERSION_INC)
 
