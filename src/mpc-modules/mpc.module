@@ -1,6 +1,6 @@
 #%Module1.0
 module-whatis "Gnu MPC library"
-module-whatis "Version: MPC_VERSION" 
+module-whatis "Version: VERSION" 
 module-whatis "Description: MPC library"
 
 setenv MPCHOME /opt/gnu/mpc

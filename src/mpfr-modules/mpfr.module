@@ -1,6 +1,6 @@
 #%Module1.0
 module-whatis "Gnu MPFR library"
-module-whatis "Version: MPFR_VERSION" 
+module-whatis "Version: VERSION" 
 module-whatis "Description: MPFR library"
 
 setenv MPFRHOME /opt/gnu/mpfr
