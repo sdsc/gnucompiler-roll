@@ -1,6 +1,6 @@
-NAME           = opt-mpfr
+NAME           = sdsc-mpfr
 VERSION        = 3.1.2
-RELEASE        = 1
+RELEASE        = 2
 PKGROOT        = /opt/gnu/mpfr
 
 SRC_SUBDIR     = mpfr

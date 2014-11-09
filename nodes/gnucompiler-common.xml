@@ -14,11 +14,11 @@ Copyright (c) 2000 - 2014 The Regents of the University of California.
 All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 </copyright>
 
-<package>opt-gcc</package>
-<package>opt-gmp</package>
-<package>opt-mpfr</package>
-<package>opt-mpc</package>
-<package>gnucompiler-modules</package>
-<package>gnucompiler-roll-test</package>
+<package>sdsc-gcc</package>
+<package>sdsc-gmp</package>
+<package>sdsc-mpfr</package>
+<package>sdsc-mpc</package>
+<package>sdsc-gnucompiler-modules</package>
+<package>sdsc-gnucompiler-roll-test</package>
 
 </kickstart>

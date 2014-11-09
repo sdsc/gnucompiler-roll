@@ -57,9 +57,25 @@
 REDHAT.ROOT = $(PWD)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
-include pull.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
-CACHE_DIR = $(REDHAT.ROOT)/src/cache
+CACHE_DIR = $(REDHAT.ROOT)/cache
+
+LICENSE_FILES = $(SOURCE_DIR)/COPYING.LESSER
+
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	( \
+	  $(DESCRIBE_PKG) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	if ! grep -q "GNU LESSER GENERAL PUBLIC LICENSE" $(LICENSE_FILES); then \
+	  exit 2; \
+	fi
+	echo -e LPGLv3+ > $@
 
 build: $(SRC_DIRS)
 	( \
@@ -76,6 +92,7 @@ install::
 	  cd $(SOURCE_DIR); \
 	  make install \
 	)
+	$(INSTALL_LICENSE_FILES)
 	mkdir -p -m 755 $(CACHE_DIR)/mpc
 	cp -r $(ROOT)/$(PKGROOT)/* $(CACHE_DIR)/mpc/
 	# Fix installation directory written into installed file lib/libmpc.la
@@ -83,4 +100,4 @@ install::
 	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(CACHE_DIR)/mpc#" $(CACHE_DIR)/mpc/lib/libmpc.la
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

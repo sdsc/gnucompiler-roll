@@ -57,9 +57,29 @@
 REDHAT.ROOT = $(PWD)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
-include pull.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
-CACHE_DIR = $(REDHAT.ROOT)/src/cache
+CACHE_DIR = $(REDHAT.ROOT)/cache
+
+LICENSE_FILES = $(SOURCE_DIR)/COPYING $(SOURCE_DIR)/COPYING3 $(SOURCE_DIR)/COPYING3.LIB $(SOURCE_DIR)/COPYING.LIB $(SOURCE_DIR)/COPYING.RUNTIME
+
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	( \
+	  $(DESCRIBE_PKG) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	if ! grep -qF "GNU GENERAL PUBLIC LICENSE" $(SOURCE_DIR)/COPYING -o \
+	   ! grep -qF "GNU GENERAL PUBLIC LICENSE" $(SOURCE_DIR)/COPYING3 -o \
+	   ! grep -qF "GNU LESSER GENERAL PUBLIC LICENSE" $(SOURCE_DIR)/COPYING3.LIB -o \
+	   ! grep -qF "GNU LESSER GENERAL PUBLIC LICENSE" $(SOURCE_DIR)/COPYING.LIB -o \
+	   ! grep -qF "GCC RUNTIME LIBRARY EXCEPTION" $(SOURCE_DIR)/COPYING.RUNTIME; then \
+	  exit 2; \
+	fi
+	echo -e 'GPLv3+ and GPLv3+ with exceptions and GPLv2+ with exceptions' > $@
 
 build: $(SRC_DIRS)
 	( \
@@ -79,6 +99,7 @@ install::
 	  export LD_LIBRARY_PATH=$(CACHE_DIR)/gmp/lib:$(CACHE_DIR)/mpfr/lib:$(CACHE_DIR)/mpc/lib:$${LD_LIBRARY_PATH}; \
 	  make prefix=$(ROOT)/$(PKGROOT) install \
 	)
+	$(INSTALL_LICENSE_FILES)
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

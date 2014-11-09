@@ -57,9 +57,28 @@
 REDHAT.ROOT = $(PWD)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
-include pull.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
-CACHE_DIR = $(REDHAT.ROOT)/src/cache
+CACHE_DIR = $(REDHAT.ROOT)/cache
+
+LICENSE_FILES = $(SOURCE_DIR)/COPYING $(SOURCE_DIR)/COPYING.LESSERv3 $(SOURCE_DIR)/COPYINGv2 $(SOURCE_DIR)/COPYINGv3
+
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	( \
+	  $(DESCRIBE_PKG) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	if ! grep -qF "GNU GENERAL PUBLIC LICENSE" $(SOURCE_DIR)/COPYING -o \
+	   ! grep -qF "GNU LESSER GENERAL PUBLIC LICENSE" $(SOURCE_DIR)/COPYING.LESSER.v3 -o \
+	   ! grep -qF "GNU GENERAL PUBLIC LICENSE" $(SOURCE_DIR)/COPYINGv2 -o \
+	   ! grep -qF "GNU GENERAL PUBLIC LICENSE" $(SOURCE_DIR)/COPYINGv3; then \
+	  exit 2; \
+	fi
+	echo -e 'LGPLv2+ and  GPLv3+ and LGPLv3+' > $@
 
 build: $(SRC_DIRS)
 	( \
@@ -74,6 +93,7 @@ install::
 	  cd $(SOURCE_DIR); \
 	  make install \
 	)
+	$(INSTALL_LICENSE_FILES)
 	mkdir -p -m 755 $(CACHE_DIR)/gmp
 	cp -r $(ROOT)/$(PKGROOT)/* $(CACHE_DIR)/gmp
 	# Fix installation directory written into installed file lib/libgmp.la
@@ -81,4 +101,4 @@ install::
 	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(CACHE_DIR)/gmp#" $(CACHE_DIR)/gmp/lib/libgmp.la
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

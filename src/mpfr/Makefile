@@ -57,9 +57,26 @@
 REDHAT.ROOT = $(PWD)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
-include pull.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
-CACHE_DIR = $(REDHAT.ROOT)/src/cache
+CACHE_DIR = $(REDHAT.ROOT)/cache
+
+LICENSE_FILES = $(SOURCE_DIR)/COPYING $(SOURCE_DIR)/COPYING.LESSER
+
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	( \
+	  $(DESCRIBE_PKG) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	if ! grep -q "GNU GENERAL PUBLIC LICENSE" $(SOURCE_DIR)/COPYING -o \
+	   ! grep -q "GNU GENERAL PUBLIC LICENSE" $(SOURCE_DIR)/COPYING.LESSER; then \
+	  exit 2; \
+	fi
+	echo -e 'GPLv3+ and LGPLv3+' > $@
 
 build: $(SRC_DIRS)
 	( \
@@ -74,6 +91,7 @@ install::
 	  cd $(SOURCE_DIR); \
 	  make install \
 	)
+	$(INSTALL_PACKAGE_FILES)
 	mkdir -p -m 755 $(CACHE_DIR)/mpfr
 	cp -r $(ROOT)/$(PKGROOT)/* $(CACHE_DIR)/mpfr/
 	# Fix installation directory written into installed file lib/libmpfr.la
@@ -81,4 +99,4 @@ install::
 	perl -pi -e "s#$(ROOT)/$(PKGROOT)#$(CACHE_DIR)/mpfr#" $(CACHE_DIR)/mpfr/lib/libmpfr.la
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

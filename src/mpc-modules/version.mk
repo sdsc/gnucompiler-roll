@@ -1,7 +1,7 @@
 PACKAGE     = mpc
 CATEGORY    = applications
 
-NAME        = $(PACKAGE)-modules
+NAME        = sdsc-$(PACKAGE)-modules
 RELEASE     = 1
 PKGROOT     = /opt/modulefiles/$(CATEGORY)/$(PACKAGE)
 

@@ -1,6 +1,6 @@
-NAME           = opt-gmp
+NAME           = sdsc-gmp
 VERSION        = 6.0.0
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/gnu/gmp
 
 SRC_SUBDIR     = gmp

@@ -1,8 +1,8 @@
 PACKAGE     = gcc
 CATEGORY    = compilers
 
-NAME        = $(PACKAGE)-modules
-RELEASE     = 1
+NAME        = sdsc-$(PACKAGE)-modules
+RELEASE     = 2
 PKGROOT     = /opt/modulefiles/$(CATEGORY)/gnu
 
 VERSION_SRC = $(REDHAT.ROOT)/src/$(PACKAGE)/version.mk

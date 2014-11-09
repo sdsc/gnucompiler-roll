@@ -1,6 +1,6 @@
-NAME           = opt-mpc
+NAME           = sdsc-mpc
 VERSION        = 1.0.2
-RELEASE        = 1
+RELEASE        = 2
 PKGROOT        = /opt/gnu/mpc
 
 SRC_SUBDIR     = mpc
