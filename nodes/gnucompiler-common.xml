@@ -18,7 +18,10 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-gmp</package>
 <package>sdsc-mpfr</package>
 <package>sdsc-mpc</package>
-<package>sdsc-gnucompiler-modules</package>
+<package>sdsc-gcc-modules</package>
+<package>sdsc-gmp-modules</package>
+<package>sdsc-mpfr-modules</package>
+<package>sdsc-mpc-modules</package>
 <package>sdsc-gnucompiler-roll-test</package>
 
 </kickstart>
