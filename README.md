@@ -13,10 +13,18 @@ For more information about the GNU Compilers please visit the
 To build/install this roll you must have root access to a Rocks development
 machine (e.g., a frontend or development appliance).
 
+If your Rocks development machine does *not* have Internet access you must
+download the appropriate gnucompiler source file(s) using a machine that does have
+Internet access and copy them into the `src/gnucompiler` directory on your Rocks
+development machine.
+
 
 ## Dependencies
 
 yum install glibc-devel.i686
+
+The sdsc-roll must be installed on the build machine, since the build process
+depends on make include files provided by that roll.
 
 
 ## Building
