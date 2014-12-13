@@ -62,8 +62,6 @@ include $(SDSCDEVEL)/Rules.mk
 
 CACHE_DIR = $(REDHAT.ROOT)/cache
 
-LICENSE_FILES = $(SOURCE_DIR)/COPYING $(SOURCE_DIR)/COPYING3 $(SOURCE_DIR)/COPYING3.LIB $(SOURCE_DIR)/COPYING.LIB $(SOURCE_DIR)/COPYING.RUNTIME
-
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
@@ -72,14 +70,8 @@ DESCRIPTION:
 	) > $@
 
 LICENSE: $(SRC_DIRS)
-	if ! grep -qF "GNU GENERAL PUBLIC LICENSE" $(SOURCE_DIR)/COPYING -o \
-	   ! grep -qF "GNU GENERAL PUBLIC LICENSE" $(SOURCE_DIR)/COPYING3 -o \
-	   ! grep -qF "GNU LESSER GENERAL PUBLIC LICENSE" $(SOURCE_DIR)/COPYING3.LIB -o \
-	   ! grep -qF "GNU LESSER GENERAL PUBLIC LICENSE" $(SOURCE_DIR)/COPYING.LIB -o \
-	   ! grep -qF "GCC RUNTIME LIBRARY EXCEPTION" $(SOURCE_DIR)/COPYING.RUNTIME; then \
-	  exit 2; \
-	fi
-	echo -e 'GPLv3+ and GPLv3+ with exceptions and GPLv2+ with exceptions' > $@
+	$(CHECK_LICENSE_FILES)
+	echo GPLv3+ and GPLv3+ with exceptions and GPLv2+ with exceptions > $@
 
 build: $(SRC_DIRS)
 	( \

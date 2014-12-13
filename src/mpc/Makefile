@@ -62,8 +62,6 @@ include $(SDSCDEVEL)/Rules.mk
 
 CACHE_DIR = $(REDHAT.ROOT)/cache
 
-LICENSE_FILES = $(SOURCE_DIR)/COPYING.LESSER
-
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
@@ -72,10 +70,8 @@ DESCRIPTION:
 	) > $@
 
 LICENSE: $(SRC_DIRS)
-	if ! grep -q "GNU LESSER GENERAL PUBLIC LICENSE" $(LICENSE_FILES); then \
-	  exit 2; \
-	fi
-	echo -e LPGLv3+ > $@
+	$(CHECK_LICENSE_FILES)
+	echo LPGLv3+ > $@
 
 build: $(SRC_DIRS)
 	( \
