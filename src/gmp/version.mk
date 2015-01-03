@@ -1,5 +1,5 @@
 NAME           = sdsc-gmp
-VERSION        = 6.0.0
+VERSION        = 6.0.0a
 RELEASE        = 1
 PKGROOT        = /opt/gnu/gmp
 
@@ -7,7 +7,7 @@ SRC_SUBDIR     = gmp
 
 SOURCE_NAME    = gmp
 SOURCE_SUFFIX  = tar.bz2
-SOURCE_VERSION = 6.0.0a
+SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
 SOURCE_DIR     = gmp-6.0.0
 
