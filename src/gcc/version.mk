@@ -1,5 +1,5 @@
 NAME           = sdsc-gcc
-VERSION        = 4.9.1
+VERSION        = 4.9.2
 RELEASE        = 1
 PKGROOT        = /opt/gnu/gcc
 
