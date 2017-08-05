@@ -74,6 +74,7 @@ LICENSE: $(SRC_DIRS)
 	echo GPLv3+ and GPLv3+ with exceptions and GPLv2+ with exceptions > $@
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/libstdc++-v3/include/bits/std_abs.h patch-files/std_abs.h.patch
 	( \
 	  cd $(SOURCE_DIR); \
 	  export LD_LIBRARY_PATH=$(CACHE_DIR)/gmp/lib:$(CACHE_DIR)/mpfr/lib:$(CACHE_DIR)/mpc/lib:$${LD_LIBRARY_PATH}; \

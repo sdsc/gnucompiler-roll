@@ -1,0 +1,4 @@
+std_abs.h.patch
+  gcc builtin abs doesn't support the float128 type. Leaving this definition
+  in, even with the existing checks, causes a compiler error in the build of
+  cern-roll.root.
