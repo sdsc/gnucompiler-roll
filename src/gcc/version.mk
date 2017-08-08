@@ -1,6 +1,6 @@
 NAME           = sdsc-gcc
-VERSION        = 4.9.2
-RELEASE        = 1
+VERSION        = 7.1.0
+RELEASE        = 0
 PKGROOT        = /opt/gnu/gcc
 
 SRC_SUBDIR     = gcc
