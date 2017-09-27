@@ -14,4 +14,4 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
 RPM.EXTRAS     = AutoReq:No
-RPM.FILES      = "/opt/gnu/mpc\\n/opt/gnu/mpc/include*\\n/opt/gnu/mpc/lib*\\n/opt/gnu/mpc/license-info\\n/opt/gnu/mpc/license-info/sdsc-mpc*\\n/opt/gnu/mpc/share*"
+RPM.PREFIX     = $(PKGROOT)
