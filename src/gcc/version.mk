@@ -1,6 +1,6 @@
 NAME           = sdsc-gcc
 VERSION        = 7.1.0
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/gnu/gcc
 
 SRC_SUBDIR     = gcc
@@ -14,3 +14,4 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
 RPM.EXTRAS     = AutoReq:No
+RPM.PREFIX     = $(PKGROOT)
