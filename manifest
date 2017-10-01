@@ -1,10 +1,10 @@
 roll-gnucompiler-kickstart
 sdsc-gcc
-sdsc-gcc
+sdsc-gcc-modules
 sdsc-gmp
-sdsc-gmp
+sdsc-gmp-modules
 sdsc-gnucompiler-roll-test
 sdsc-mpc
-sdsc-mpc
+sdsc-mpc-modules
 sdsc-mpfr
-sdsc-mpfr
+sdsc-mpfr-modules
