@@ -1,6 +1,6 @@
 NAME           = sdsc-gmp
 VERSION        = 6.0.0a
-RELEASE        = 2
+RELEASE        = 3
 PKGROOT        = /opt/gnu/gmp
 
 SRC_SUBDIR     = gmp
@@ -13,5 +13,5 @@ SOURCE_DIR     = gmp-6.0.0
 
 TAR_BZ2_PKGS   = $(SOURCE_PKG)
 
-RPM.EXTRAS     = AutoReq:No
+RPM.EXTRAS     = AutoReq:No\nAutoProv:No
 RPM.PREFIX     = $(PKGROOT)
