@@ -1,6 +1,6 @@
 NAME           = sdsc-mpfr
 VERSION        = 3.1.2
-RELEASE        = 3
+RELEASE        = 4
 PKGROOT        = /opt/gnu/mpfr
 
 SRC_SUBDIR     = mpfr
@@ -13,5 +13,5 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
-RPM.EXTRAS     = AutoReq:No
+RPM.EXTRAS     = AutoReq:No\nAutoProv:No
 RPM.PREFIX     = $(PKGROOT)

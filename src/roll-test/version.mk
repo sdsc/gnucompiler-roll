@@ -1,7 +1,7 @@
 NAME       = sdsc-gnucompiler-roll-test
 VERSION    = 1
-RELEASE    = 4
+RELEASE    = 5
 PKGROOT    = /root/rolltests
 
-RPM.EXTRAS = AutoReq:No
+RPM.EXTRAS = AutoReq:No\nAutoProv:No
 RPM.FILES  = $(PKGROOT)/gnucompiler.t
