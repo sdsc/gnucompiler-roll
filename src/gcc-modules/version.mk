@@ -2,7 +2,7 @@ PACKAGE     = gcc
 CATEGORY    = compilers
 
 NAME        = sdsc-$(PACKAGE)-modules
-RELEASE     = 6
+RELEASE     = 7
 PKGROOT     = /opt/modulefiles/$(CATEGORY)/gnu
 
 VERSION_SRC = $(REDHAT.ROOT)/src/$(PACKAGE)/version.mk

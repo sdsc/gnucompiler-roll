@@ -21,6 +21,10 @@ if {$unloadApps && [info exists env(LOADEDMODULES)]} {
     if {[string first "gnu/" $app] == 0} {
       continue
     }
+    # Special case for gnutools, which installs into /opt/gnu
+    if {[string first "gnutools/" $app] == 0} {
+      continue
+    }
     # Check whether this module references a compiler-specific subdir
     set moduleEffects [exec bash -c "module display $app" 2>@1]
     if {[string first "/gnu" $moduleEffects] >= 0} {
