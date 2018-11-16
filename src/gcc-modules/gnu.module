@@ -49,5 +49,7 @@ foreach path [glob -nocomplain /opt/modulefiles/*/.gnu] {
 # Compiler environment modifications
 set gccHome /opt/gnu
 setenv GCCHOME /opt/gnu
+GNUTOOLSBEGIN
 prepend-path PATH $gccHome/gcc/bin
 prepend-path LD_LIBRARY_PATH $gccHome/gcc/lib64:$gccHome/gmp/lib:$gccHome/mpfr/lib:$gccHome/mpc/lib
+GNUTOOLSEND
