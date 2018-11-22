@@ -8,14 +8,13 @@ $(VERSION_INC): $(VERSION_SRC)
 
 build:
 
-# could not get the substitution below to work with perl
 install:: typical-modulefile-install
 	if test "$(GNUTOOLSCOMPILER)" = "yes"; then \
-               sed -i 's/GNUTOOLSBEGIN/if {! $$unloadApps} {/g' $(ROOT)/$(PKGROOT)/$(VERSION); \
-               perl -pi -e "s!GNUTOOLSEND!}!g" $(ROOT)/$(PKGROOT)/$(VERSION); \
+	       perl -pi -e "\$$dollar=chr(36);s#GNUTOOLSBEGIN#if {! \$${dollar}unloadApps} {#g" $(ROOT)/$(PKGROOT)/$(VERSION); \
+               perl -pi -e "s#GNUTOOLSEND#}#g" $(ROOT)/$(PKGROOT)/$(VERSION); \
         else \
-               perl -pi -e "s!GNUTOOLSBEGIN!!g" $(ROOT)/$(PKGROOT)/$(VERSION); \
-               perl -pi -e "s!GNUTOOLSEND!!g" $(ROOT)/$(PKGROOT)/$(VERSION); \
+               perl -pi -e "s#GNUTOOLSBEGIN##g" $(ROOT)/$(PKGROOT)/$(VERSION); \
+               perl -pi -e "s#GNUTOOLSEND##g" $(ROOT)/$(PKGROOT)/$(VERSION); \
         fi
 
 
