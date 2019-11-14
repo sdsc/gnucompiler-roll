@@ -2,7 +2,7 @@ PACKAGE     = gcc
 CATEGORY    = compilers
 
 NAME        = sdsc-$(PACKAGE)-modules
-RELEASE     = 9
+RELEASE     = 10
 PKGROOT     = /opt/modulefiles/$(CATEGORY)/gnu
 
 GNUTOOLSCOMPILER=no
